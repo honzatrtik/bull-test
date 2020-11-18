@@ -1,0 +1,42 @@
+version: "3.8"
+services:
+  redis:
+    image: "redis:alpine"
+
+  producer:
+    image: "node:14-alpine"
+    working_dir: "/app"
+    volumes:
+      - "./:/app"
+    command: ["node", "/app/dist/producer.js"]
+    environment:
+      REDIS_HOST: "redis"
+      QUEUE_NAME: "test"
+    depends_on:
+      - redis
+
+  worker1:
+    image: "node:14-alpine"
+    working_dir: "/app"
+    volumes:
+      - "./:/app"
+    command: ["node", "/app/dist/worker.js"]
+    environment:
+      REDIS_HOST: "redis"
+      WORKER_NAME: "worker1"
+      QUEUE_NAME: "test"
+    depends_on:
+      - redis
+
+  worker2:
+    image: "node:14-alpine"
+    working_dir: "/app"
+    volumes:
+      - "./:/app"
+    command: ["node", "/app/dist/worker.js"]
+    environment:
+      REDIS_HOST: "redis"
+      WORKER_NAME: "worker2"
+      QUEUE_NAME: "test"
+    depends_on:
+      - redis

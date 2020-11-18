@@ -1,0 +1,19 @@
+{
+  "name": "bull-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bull": "^3.18.1"
+  },
+  "devDependencies": {
+    "@types/bull": "^3.14.4",
+    "typescript": "^4.0.5"
+  }
+}
